@@ -1,4 +1,4 @@
-import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
+import { fetchBreeds, fetchCatByBreed } from './cat-api';
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
 import Notiflix from 'notiflix';
@@ -12,6 +12,8 @@ const elements = {
 
 const { selectEl, textMarkEl, loaderEl, errorEl } = elements;
 
+loaderEl.classList.replace('loader', 'is-hidden');
+errorEl.classList.add('is-hidden');
 textMarkEl.classList.add('is-hidden');
 
 selectEl.addEventListener('change', createMarkUp);
@@ -57,5 +59,7 @@ function onFetchError() {
   selectEl.classList.remove('is-hidden');
   loaderEl.classList.replace('loader', 'is-hidden');
 
-  Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page or select another cat breed!');
+  Notiflix.Notify.failure(
+    'Oops! Something went wrong! Try reloading the page or select another cat breed!'
+  );
 }
