@@ -12,7 +12,8 @@ const elements = {
 
 const { selectEl, textMarkEl, loaderEl, errorEl } = elements;
 
-loaderEl.classList.replace('loader', 'is-hidden');
+// loaderEl.classList.replace('loader', 'is-hidden');
+selectEl.classList.add('is-hidden');
 errorEl.classList.add('is-hidden');
 textMarkEl.classList.add('is-hidden');
 
@@ -23,7 +24,8 @@ updateSelect();
 function updateSelect(data) {
   fetchBreeds(data)
     .then(data => {
-      loaderEl.classList.replace('loader', 'is-hidden');
+        loaderEl.classList.replace('loader', 'is-hidden');
+        selectEl.classList.remove('is-hidden');
 
       let markSelect = data.map(({ name, id }) => {
         return `<option value ='${id}'>${name}</option>`;
@@ -37,9 +39,9 @@ function updateSelect(data) {
 }
 
 function createMarkUp(event) {
-  loaderEl.classList.replace('is-hidden', 'loader');
   selectEl.classList.add('is-hidden');
-  textMarkEl.classList.add('is-hidden');
+    textMarkEl.classList.add('is-hidden');
+    loaderEl.classList.replace('is-hidden', 'loader');
 
   const breedId = event.currentTarget.value;
 
